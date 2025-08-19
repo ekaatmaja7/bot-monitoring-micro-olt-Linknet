@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Alarm Aktif - Monitoring Bot</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #ddd; padding: 8px; }
+    th { background-color: #f2f2f2; }
+    tr.critical { background-color: #ffe6e6; }
+  </style>
+</head>
+<body>
+  <h2>Alarm Aktif Bojonegoro dan Ponorogo</h2>
+  <table>
+    <tr>
+      <th>OLT</th>
+      <th>Message</th>
+      <th>Severity</th>
+      <th>Start</th>
+      <th>IP</th>
+      <th>Area</th>
+    </tr>
+    {% for alarm in alarms|sort(attribute='start', reverse=True) %}
+    <tr class="{{ 'critical' if alarm.severity.lower() == 'critical' else '' }}">
+      <td>{{ alarm.olt }}</td>
+      <td>{{ alarm.message }}</td>
+      <td>{{ alarm.severity }}</td>
+      <td>{{ alarm.start }}</td>
+      <td>{{ alarm.ip }}</td>
+      <td>{{ alarm.area }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</body>
+</html>
