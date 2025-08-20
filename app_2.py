@@ -13,8 +13,8 @@ def load_urls():
         return json.load(f)
 
 def send_alert(message):
-    token = "7288605319:AAFOhRPXge5PA3SbB3Oy-97o6MerZTWvqVw"
-    chat_id = "1405885003"
+    token = "{token telegram}"
+    chat_id = "{chat id telegram}"
     url = f"https://api.telegram.org/bot{token}/sendMessage"
     payload = {
         "chat_id": chat_id,
